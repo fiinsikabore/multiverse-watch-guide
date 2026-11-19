@@ -1,0 +1,16 @@
+{
+  "name": "multiverse-watch-guide",
+  "version": "1.0.0",
+  "description": "Plan, filter and track your MCU watch order using the TMDB API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
