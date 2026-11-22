@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiverse Watch Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href ="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="wrap">
+        <header>
+            <h1>Multiverse <span class="script">Watch Guide</span></h1>
+            <p>Every Marvel Studios film, one timeline. Choose a film to open its file.</p>
+            <p class="progress">Mission progress: <strong id="progress-label">0 / 0 watched</strong> <span id="up-next"></span></p>
+        </header>
+
+        <section class="controls">
+            <input id="search" class="search" type="search" placeholder="Search a title..." maxlength="60">
+            <select id="phase">
+                <option value="all">All phases</option>
+                <option value="1">Phase 1</option>
+                <option value="2">Phase 2</option>
+                <option value="3">Phase 3</option>
+                <option value="4">Phase 4</option>
+                <option value="5">Phase 5</option>
+                <option value="6">Phase 6</option>
+            </select>
+            <select id="status">
+                <option value="all">All films</option>
+                <option value="released">Released</option>
+                <option value="upcoming">Coming soon</option>
+                <option value="watched">Watched</option>
+                <option value="unwatched">Not watched yet</option>
+            </select>
+            <select id="sort">
+                <option value="date">Release order</option>
+                <option value="rating">Top rated</option>
+                <option value="title">Title A-Z</option>
+            </select>
+        </section>
+
+        <p id="count" class="count"></p>
+        <div id="status-box" class="status-box"></div>
+
+        <!--the simple list of films -->
+        <ul id="list" class="list"></ul>
+
+        <footer>
+            <p>Transmission received from base <strong id="server">...</strong></p>
+            <p>Mission intel and posters recovered from the archives of <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>.
+                This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+            <p>A fan-made project. Not affiliated with Marvel Studios. Stay until the end, there's always one more scene.</p>
+        </footer>
+    </main>
+
+    <!--the card that opens when you click a film -->
+    <dialog id="modal">
+        <button id="close" class="close" aria-label="Close">x</button>
+        <div id="modal-body"></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+  </html>

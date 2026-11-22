@@ -43,20 +43,19 @@ app.get("/api/movies", async function (req, res) {
     try {
         let results = [];
         for (let page = 1; page <= 5; page++) {
-            const url = TMDB + "/discover?movie?with_companie=420&sort_by=primary_release_date.asc&page" + page + "&api_key=" + API_KEY;
+            const url = TMDB + "/discover/movie?with_companies=420&sort_by=primary_release_date.asc&page=" + page + "&api_key=" + API_KEY;            
             const response = await fetch(url);
             if (!response.ok) throw new Error("TMDB error " + response.status);
-
             const data = await response.json();
             results = results.concat(data.results);
-            if (page >= data.total_pages) break;
+            if (page >=data.total_pages) break;
+            
         }
 
         // keep only what my page needs
         savedMovies = [];
         for ( const m of results) {
-            if (!m.release_date || m.genres_ids.includes(99)) continues; // skip documentaries
-
+             if (!m.release_date || m.genre_ids.includes(99)) continue;
             savedMovies.push({
                 id: m.id,
                 title: m.title,
@@ -69,11 +68,32 @@ app.get("/api/movies", async function (req, res) {
             });
         }
 
-        res.json({ server: os.hostname (), movies: savesmovies });
-    } catch (error) {
+        res.json({server: os.hostname(), movies: savedMovies });
+    }   catch (error) {
         console.log(error.message);
-        res.status(502).json({error: "Could not load the movies right now. Please try again." });
+        res.status(502).json({ error: "Could not load the movies right now. Please try again." });
+    }        
+});
+// one movie, to get its runtime
+app.get("/api/movies/:id", async function (req, res) {
+    try {
+        const url = TMDB + "/movie/" + Number(req.params.id) + "?api_key=" + API_KEY;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("TMDB error " + response.status);
+
+        const data = await response.json();
+        res.json({ runtime: data.runtime });
+    }   catch (error) {
+        res.status(502).json({ error: "Could not load this movie." });
     }
 });
 
-// one ;ovie, to get its runtime
+
+// the load balancer checks this to know the server is alive
+app.get("/health", function (req, res) {
+    res.send("ok");
+})
+
+app.listen(PORT, function () {
+    console.log("Server running on http://localhost:" + PORT);
+});

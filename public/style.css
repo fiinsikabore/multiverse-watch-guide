@@ -1,0 +1,342 @@
+/* clean light style, black text, one red accent */
+:root {
+    --bg: #f4f4f4;
+    --outer: #e8e8e8;
+    --inner: #dadada;
+    --black: #111111;
+    --grey: #8e8e8e;
+    --line: #d4d4d4;
+    --line: #d4d4d4;
+    --red: #c8161d;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--black);
+    font-family: "Inter", Arial, sans-serif;
+}
+
+.wrap {
+    max-width: 900px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+/* the title */
+h1 {
+    font-family: "Anton", Impact, "Arial Black", sans-serif;
+    font-weight: 400;
+    font-size: 96px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.script {
+    font-family: "Kaushan Script", cursive;
+    text-transform: none;
+    display: block;
+    font-size: 46px;
+    color: var(--red);
+}
+
+header p {
+    margin-top: 12px;
+    color: var(--grey);
+    font-weight: 500;
+}
+
+.progress strong {
+    color: var(--black);
+}
+
+/* search & filters */
+.controls {
+    display: ggrid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 30px 0 10px;
+}
+
+input,
+select {
+    background:#fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-size: 15px
+    font-family: inherit;
+    color: var(--black);
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--black);
+}
+
+.count {
+    color: var(--grey);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* the list */
+
+.list {
+    list-style: none;
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 22px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.row:hover {
+    background: #f7f7f7;
+}
+
+.num {
+    width: 28px;
+    color: var(--grey);
+    font-weight: 600;
+}
+
+.row-title {
+    flex: 1;
+}
+
+.row-title strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.row-title small {
+    color: var(--grey);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.tag {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--black);
+    color: #fff;
+}
+
+.tag.soon {
+    backgeound: var(--red);
+}
+
+/* loading and error messages */
+.status-box {
+    text-align: center;
+    padding: 30px;
+    color: var(--grey);
+}
+
+.status-box {
+    text-align: center;
+    padding: 30px;
+    color: var(grey);
+}
+
+.status-box:empty {
+    display: none;
+}
+
+.status-box.error {
+    background: #fff;
+    border: 2px solid var(--red);
+    border-radius: 20px;
+    color: var(--black);
+}
+
+.status-box button {
+    margin-top: 12px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    background: var(--black);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* the card popup (like the reference) */
+
+dialog {
+    margin: auto;
+    width: 92%;
+    max-width: 680px;
+    border: none;
+    background: transprent;
+    overflow: visible;
+}
+
+dialog::backdrop {
+    background: rgba(244, 244, 244, 0.85);
+    backdrop-filter: blur(6px);
+}
+
+outer-card h2 {
+    font-size: 34px;
+    font-weight: 500;
+    color: var(--grey);
+    margin-bottom 6px;
+}
+
+/* card side by side, you can scroll */
+.card-row {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    padding: 95px 30px 4 px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.card-row: -webkit-scrollbar {
+    display: none;
+}
+
+.movie-card {
+    flex: 0 0 290px;
+    background: var(--inner);
+    border-radius: 40px;
+    padding: 0 26px 26px;
+    scroll-snap-align: start;
+}
+
+/* the poster goes out of the top of the card */
+.movie-card img,
+.movie-card .no-poster {
+    display: block;
+    width: 140px;
+    height: 210px;
+    margin: -80px 0 18px 30px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 3px solid #e9dfc6;
+    box-shadow: 8px 12px 20px rgba(0, 0, 0, 0.3);
+    transform: rotate(3deg);
+}
+
+.no-poster {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.movie-card h3 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.player {
+    display: flex;
+    align-item: center;
+    gap: 12px;
+}
+
+/*play button = mark as watched */
+.play {
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 24px;
+}
+
+.play.on {
+    color: var(--red);
+}
+
+.bar {
+    flex: 1;
+    height: 6px;
+    background: #c4c4c4;
+    border-radius: 6px;
+}
+
+.bar div {
+    height: 100%;
+    background: #666;
+    border-radius: 6px;
+}
+
+.time {
+    color: var(--grey);
+    font-size: 16px;
+    min-width: 52px;
+    text-align: right;
+}
+
+.close {
+    position: absolute;
+    top: -18px;
+    right: -6px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-raidius: 50%
+    background: var(--black);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+footer {
+    margin-top: 40px;
+    color: var(--grey);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+footer a {
+    color: var(--black);
+}
+
+/* phones */
+@media (max-width: 700px) {
+    h1 {
+        font-size: 58px;
+    }
+    .script {
+        font-size: 32px;
+    }
+    .controls {
+        grid-template-columns: 1fr 1fr;
+    }
+    .search {
+        grid-column: 1 / 3;
+    }
+    .rating {
+        display: none;
+    }
+    .movie-card {
+        flex-basis: 250px;
+    }
+}
