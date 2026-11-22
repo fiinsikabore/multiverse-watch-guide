@@ -6,7 +6,6 @@
     --black: #111111;
     --grey: #8e8e8e;
     --line: #d4d4d4;
-    --line: #d4d4d4;
     --red: #c8161d;
 }
 
@@ -57,7 +56,7 @@ header p {
 
 /* search & filters */
 .controls {
-    display: ggrid;
+    display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 10px;
     margin: 30px 0 10px;
@@ -69,7 +68,7 @@ select {
     border: 1px solid var(--line);
     border-radius: 14px;
     padding: 12px 14px;
-    font-size: 15px
+    font-size: 15px;
     font-family: inherit;
     color: var(--black);
 }
@@ -133,6 +132,12 @@ select:focus {
     font-size: 14px;
 }
 
+.rating {
+    color: var(--grey);
+    font-weight: 600;
+    font-size: 14px;
+}
+
 .tag {
     font-size: 12px;
     font-weight: 800;
@@ -143,7 +148,7 @@ select:focus {
 }
 
 .tag.soon {
-    backgeound: var(--red);
+    background: var(--red);
 }
 
 /* loading and error messages */
@@ -151,12 +156,6 @@ select:focus {
     text-align: center;
     padding: 30px;
     color: var(--grey);
-}
-
-.status-box {
-    text-align: center;
-    padding: 30px;
-    color: var(grey);
 }
 
 .status-box:empty {
@@ -188,7 +187,7 @@ dialog {
     width: 92%;
     max-width: 680px;
     border: none;
-    background: transprent;
+    background: transparent;
     overflow: visible;
 }
 
@@ -197,11 +196,18 @@ dialog::backdrop {
     backdrop-filter: blur(6px);
 }
 
-outer-card h2 {
+.outer-card {
+    background: var(--outer);
+    border-radius: 56px;
+    padding: 34px 0 34px 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.outer-card h2 {
     font-size: 34px;
     font-weight: 500;
     color: var(--grey);
-    margin-bottom 6px;
+    margin-bottom: 6px;
 }
 
 /* card side by side, you can scroll */
@@ -209,11 +215,11 @@ outer-card h2 {
     display: flex;
     gap: 22px;
     overflow-x: auto;
-    padding: 95px 30px 4 px 0;
+    padding: 95px 30px 4px 0;
     scroll-snap-type: x mandatory;
 }
 
-.card-row: -webkit-scrollbar {
+.card-row::-webkit-scrollbar {
     display: none;
 }
 
@@ -254,9 +260,15 @@ outer-card h2 {
     line-height: 1.2;
 }
 
+.movie-card .sub {
+    color: var(--grey);
+    font-size: 18px;
+    margin: 4px 0 18px;
+}
+
 .player {
     display: flex;
-    align-item: center;
+    align-items: center;
     gap: 12px;
 }
 
@@ -300,7 +312,7 @@ outer-card h2 {
     width: 40px;
     height: 40px;
     border: none;
-    border-raidius: 50%
+    border-radius: 50%;
     background: var(--black);
     color: #fff;
     font-size: 24px;
