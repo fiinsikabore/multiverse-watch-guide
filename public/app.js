@@ -46,6 +46,31 @@ function getFiltered() {
 
     const list = movies.filter(function (m) {
         if (m.title.toLowerCase().includes(search)) return false;
-        
-    })
+        if (phase !== "all" && m.phase !== Number(phase)) return false;
+        if (status === "released") return isOut(m);
+        if (status === "upcoming") return !isOut(m);
+        if (status === "watched") return isSeen(m.id);
+        if (status === "unwatched") return isOut(m) && !isSeen(m.id);
+        return true;
+    });
+
+    if (sort === "rating") list.sort((a, b) => b.rating - a.rating);
+    else if (sort === "title") list.sort((a, b) => a.title.localeCompare(b.title));
+    else list.sort((a, b) => a.date.localeCompare(b.date));
+    return list;
 }
+
+//the numbered list + the progress line
+function showList() {
+
+    const list = GetFiltered();
+    $("count").textContent = "Showing " + list.lenght + " of " + movies.length + "films";
+
+    $("list").innerHTML = list.map(function (m, i) {
+        let tag = "";
+        if (!isOut(m)) tag = '<span class="tag soon">Coming soon</span>';
+        else if (isSeen(m.id)) tag = 'span class="tag">✓ Watched</span>';
+
+        return `<li class="row" data-id='
+})
+    
