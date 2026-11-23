@@ -71,6 +71,33 @@ function showList() {
         if (!isOut(m)) tag = '<span class="tag soon">Coming soon</span>';
         else if (isSeen(m.id)) tag = 'span class="tag">✓ Watched</span>';
 
-        return `<li class="row" data-id='
-})
+        return `<li class="row" data-id="${m.id}>
+            <span class="num">${String(i + 1)}.padStart(2, "0")}</span>
+            <div class="row-title"><strong>${safe(m.title)}</strong><small>${m.year} · Phase ${m.phase}</small></div>
+            ${tag}
+            <span class="rating">★ ${m.rating ? m.rating.toFixed(1) : "-"}</span>
+            </li>`;
+    }).join("") || '<li class="status-box">No films match your search.</li>';
+
+
+    const released = movies.filter(isOut).sort((a, b) => a.date.localeCompare(b.date));
+    const done = released.filter((m) => isSeen(m.id)).length;
+    const next = released.find((m) => !isSeen(m.id));
+    $("progress-label").textContent = done + " / " + released.length + " watched";
+    $("up-next").textConetnt = next ? ".Up next: " + nexttitle : ". You are all caught up!";
+}
+
+function toggleWatched(id) {
+    watched = isSeen(id) ? watched.filter((x) => x !== id) : [...watched, id];
+    localStorage.setItem("watched", JSON.stringify(watched));
+    showList();
+}
+
+//the popup: all films of the same phase, starting at the one you clicked
+function openCard(id) {
+    const clicked = movies.find((m) => m.id === id);
+    const samePhase = movies.filter((m) => m.phase === clicked.phase).sort((a, b) => a.date.localeCompare(b.date));
+
+    $("modal-body").innerHTML =
+}
     
