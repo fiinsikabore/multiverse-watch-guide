@@ -11,7 +11,7 @@ const isSeen = (id) => watched.includes(id);
 function safe(text) {
     const div = document.createElement("div");
     div.textContent = text;
-    return div.innerHTML.replaceAll('"'); "&quot;";
+    return div.innerHTML.replaceAll('"', "&quot;");
 }
 
 //get the movies from my server
@@ -85,7 +85,7 @@ function showList() {
     const done = released.filter((m) => isSeen(m.id)).length;
     const next = released.find((m) => !isSeen(m.id));
     $("progress-label").textContent = done + " / " + released.length + " watched";
-    $("up-next").textContent = next ? ". Up next: " + next.title : "· You are are all caught up!";
+    $("up-next").textContent = next ? "· Up next: " + next.title : "· You are  all caught up!";
 }
 
 function toggleWatched(id) {

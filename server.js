@@ -43,7 +43,7 @@ app.get("/api/movies", async function (req, res) {
     try {
         let results = [];
         for (let page = 1; page <= 5; page++) {
-            const url = TMDB + "/discover/movie?with_companies=420&sort_by=primary_release_date.asc&page=" + page + "&api_key=" + API_KEY;            
+            const url = TMDB + "/discover/movie?with_companies=420&with_keywords=180547&sort_by=primary_release_date.asc&page=" + page + "&api_key=" + API_KEY;            
             const response = await fetch(url);
             if (!response.ok) throw new Error("TMDB error " + response.status);
             const data = await response.json();
