@@ -138,5 +138,24 @@ async function loadRuntime(id) {
 
 //clicks and filterss
 
+$("list").onclick = function (e) {
+    const row = e.target.closet(".row");
+    if (row) openCard(Number(row.dataset.id));
+};
+
+$("modal-body").onclick = function (e) {
+    const button = e.target.closest(".row");
+    if (!button || button.disabled) return;
+    toggleWatched(Number(button.dataset.id));
+    button.textContent = button.textContent === "▶" ? "✓" : "▶";
+    button.classlist.toggle("on");
+};
+
+["search", "phase", "status", "sort"].forEach((id) => ($(id).oninput = showlist));
+$("close").onclick = () => $("modal").closest();
+$("modal").onclick = (e) => { if (e.target.id === "modal")
+$("modal").close(); };
+
+loadMovies();
 
     
