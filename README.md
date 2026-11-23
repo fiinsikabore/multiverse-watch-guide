@@ -2,7 +2,7 @@
 
 A web app that helps Marvel fans watch the MCU in order. It lists every Marvel Studios film from the TMDB API, and lets you search, filter by phase or status, sort, mark films as watched and see what to watch next.
 
-- **Live app:** http://YOUR_LB01_IP
+- **Live app:** http://18.133.222.158
 - **Demo video:** https://youtu.be/YOUR_VIDEO_LINK
 
 ## Features
@@ -77,8 +77,8 @@ backend web_servers
     mode http
     balance roundrobin
     option httpchk GET /health
-    server web01 WEB01_IP:80 check
-    server web02 WEB02_IP:80 check
+    server web01 13.40.72.99:80 check
+    server web02 18.171.250.120:80 check
 ```
 
 Then `sudo systemctl restart haproxy`. `roundrobin` sends visitors to Web01 and Web02 in turn, and `/health` lets HAProxy skip a server that is down.
@@ -86,10 +86,10 @@ Then `sudo systemctl restart haproxy`. `roundrobin` sends visitors to Web01 and 
 ### Testing
 
 ```bash
-for i in {1..6}; do curl -sI http://LB01_IP | grep -i x-served-by; done
+for i in {1..6}; do curl -sI http://18.133.222.158 | grep -i x-served-by; done
 ```
 
-The answers alternate between `web-01` and `web-02`. The footer of the site also shows which server answered ("Transmission received from base …").
+The answers alternate between `7309-web-01` and `7309-web-02`. The footer of the site also shows which server answered ("Transmission received from base …").
 
 ## API used
 
