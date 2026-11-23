@@ -98,6 +98,45 @@ function openCard(id) {
     const clicked = movies.find((m) => m.id === id);
     const samePhase = movies.filter((m) => m.phase === clicked.phase).sort((a, b) => a.date.localeCompare(b.date));
 
-    $("modal-body").innerHTML =
+    $("modal-body").innerHTML = `<div class="outer-card"><h2>Phase ${clicked.phase}</h2>
+    <div class+"card-row" id="card-row">${samePhase.map(makeCard).join("")}</div></div>`;
+    $("modal").showModal();
+
+    $("modal").showModal();
+
+    $("card-row").scrollLeft = $("card-" + id).offsetLeft - $("card-row").offsetLeft;
+    samePhase.forEach((m) => loadRuntime(m.id));
 }
+
+function makeCard(m) {
+    const poster = m.poster ? `<im src="${m.poster}" alt="${safe(m.title)} poster">` : '<div class="no-poster">No poster</div>';
+    const button = isOut(m)
+    ? `<button class="play ${isSeen(m.id) ? "on" : ""}" data-id="$"{m.id}" title="Mark as watched">${isSeen(m.id) ? "✓" : "▶"}</button>`
+    : '<button class="play" disabled title="Not out yet">⏳</button>';
+
+    return `<div class="movie-card" id=card-${m.id}">
+    ${poster}
+    <h3>${safe(m.title)}</h3>
+    <p class="sub">${m.year} · ★ ${m.rating ? m.rating.toFixed(1) : "-"}</p>
+    <div class="player">
+        ${button}
+        <div class="bar"><div style="width: ${m.rating * 10}%"></div></div>
+        <span class="time" id="time-${m.id}">…</span>
+    </div>
+</div>`;
+}
+
+//second API call: the runtime of one film
+async function loadRuntime(id) {
+    try {
+        const date = await (await fetch("/api/movies/" + id)).json();
+        $("time-" + id).textContent = data.runtime ? Math.floor(data.runtime / 60) + "h " + (data.runtime % 60) + "m" : "-";
+    } catch (error) {
+        $("time-" + id).textContent = "=";
+    }
+}
+
+//clicks and filterss
+
+
     
