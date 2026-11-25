@@ -3,7 +3,7 @@
 A web app that helps Marvel fans watch the MCU in order. It lists every Marvel Studios film from the TMDB API, and lets you search, filter by phase or status, sort, mark films as watched and see what to watch next.
 
 - **Live app:** http://18.133.222.158
-- **Demo video:** https://youtu.be/YOUR_VIDEO_LINK
+- **Demo video:** https://youtu.be/E-cHsY0ECeI
 
 ## Features
 
